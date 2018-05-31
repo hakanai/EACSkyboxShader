@@ -1,8 +1,8 @@
 // Derived from https://github.com/Unity-Technologies/SkyboxPanoramicShader
 //
-// Their version supports standard Unity layouts for cube maps as well as
+// Their version supports standard Unity layouts for cubemaps as well as
 // cylindrical projections.
-// This version only supports YouTube's equi-angular layout.
+// This version only supports YouTube's equi-angular cubemap layout.
 
 #include "UnityCG.cginc"
 
@@ -35,13 +35,13 @@ static const float2 OFFSET_POS_Z = float2(0.0,  0.0       );
 static const float2 OFFSET_NEG_Z = float2(0.0,  0.66666666);
 
 /**
- * Converts a direction vector to equi-angular cube map coordinates.
+ * Converts a direction vector to equi-angular cubemap coordinates.
  *
  * @param coords the input direction vector.
  * @param edgeSize the size of one row of pixels around the edge.
  *        (X and Y in their respective components.)
  */
-inline float2 EquiAngularCubeMap(float3 coords, float2 edgeSize)
+inline float2 EquiAngularCubemap(float3 coords, float2 edgeSize)
 {
     // Map the direction vector to a face and coordinate within
     // that face.
@@ -64,7 +64,7 @@ inline float2 EquiAngularCubeMap(float3 coords, float2 edgeSize)
 
     // `tc` now contains values from [-1..+1, -1..+1].
 
-    // Undo the equi-angular cube map
+    // Undo the equi-angular cubemap
     // Uses equations documented here:
     // https://blog.google/products/google-vr/bringing-pixels-front-and-center-vr-video/
     // Except we account for the difference that after our previous step,
@@ -136,7 +136,7 @@ FragmentInput Vertex(VertexInput input)
 
 fixed4 Fragment(FragmentInput input) : SV_Target
 {
-    float2 texcoord = EquiAngularCubeMap(input.texcoord, input.edgeSize);
+    float2 texcoord = EquiAngularCubemap(input.texcoord, input.edgeSize);
     half4 tex = tex2D(_Tex, texcoord);
     half3 c = DecodeHDR(tex, _Tex_HDR);
     return half4(c, 1);
