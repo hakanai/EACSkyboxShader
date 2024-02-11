@@ -1,0 +1,20 @@
+repo_name: hakanai/EACSkyboxShader
+report_id: 41521c42bbc3dc18cfc10287b890f34c
+version: 0.1
+repo_type: Public
+timestamp: '2024-02-11T01:36:54+00:00'
+requested_by: hakanai
+provider: github
+branch: main
+detected_tools_count: 1
+tools:
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/hakanai/EACSkyboxShader
+  detection_source: Repo Metadata
